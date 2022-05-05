@@ -1,0 +1,4 @@
+Some roles may refer to a path that might not be present by default (/opt/*). 
+All the required scripts are kepts in the scripts directory, copy them to an approve path and ensure that this
+is the path that you would call in your roles as well. :)
+
