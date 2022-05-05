@@ -1,0 +1,10 @@
+[group1]
+localhost
+
+[group2]
+localhost
+
+[noreboot]
+localhost
+
+#[satellite]
