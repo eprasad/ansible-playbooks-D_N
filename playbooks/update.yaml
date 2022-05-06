@@ -14,6 +14,8 @@
       update_only: yes
     register: yum_update_status
 
+  - debug: var=yum_update_status
+
   - name: Remove packates not needed anymore
     yum:
       autoremove: yes
