@@ -7,7 +7,6 @@
 - name: Performing yum update on host(s)
   hosts: group1
   become: yes
-  roles_path: /var/lib/awx/projects/_8__test_git_patching_project/roles
   any_errors_fatal: false
 
   ##########################################################
