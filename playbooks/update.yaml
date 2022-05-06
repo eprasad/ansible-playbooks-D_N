@@ -26,9 +26,12 @@
   # Execute update procedures
   #########################################################
   roles:
-    - { role: pre_update, become: yes }
-    - { role: yum_update, become: yes }
-    - { role: post_update, become: yes }
+    - role: pre_update 
+      become: yes 
+    - role: yum_update 
+      become: yes 
+    - role: post_update 
+      become: yes 
 
   ##########################################################
   # Send notifiction of completion
@@ -65,9 +68,12 @@
   # Execute update procedures
   #########################################################
   roles:
-    - { role: pre_update, become: yes }
-    - { role: yum_update, become: yes }
-    - { role: post_update, become: yes }
+    - role: pre_update
+      become: yes 
+    - role: yum_update
+      become: yes 
+    - role: post_update
+      become: yes 
 
   ##########################################################
   # Send notifiction of completion
@@ -104,9 +110,12 @@
   # Execute update procedures
   #########################################################
   roles:
-    - { role: pre_update, become: yes }
-    - { role: yum_update, become: yes }
-    - { role: post_update, become: yes }
+    - role: pre_update 
+      become: yes 
+    - role: yum_update 
+      become: yes 
+    - role: post_update
+      become: yes 
 
   ##########################################################
   # Send notifiction of completion
