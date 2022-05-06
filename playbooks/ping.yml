@@ -1,0 +1,4 @@
+- name: ping test ONLY if older playbook fails
+  hosts: all
+  tasks:
+  - ping:
