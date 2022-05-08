@@ -1,3 +1,4 @@
+#Note: For this playbook to work ansible requires PyVmomi package to be installed on the vmware vcenter host.
 - name: VMWare Automation 
   hosts: all
   tasks:
@@ -29,4 +30,7 @@
       		device_type: vmxnet3
     		wait_for_ip_address: yes
   		delegate_to: localhost
-  		register: deploy_vm  
+  		register: deploy_vm
+    - name: Debug if the VM was deployed successfully
+      debug:
+        var: deploy_vm.instance.ipv4
