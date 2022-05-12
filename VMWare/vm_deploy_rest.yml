@@ -1,6 +1,10 @@
 - name: Test Vmware automation
   hosts: all
   tasks:
+    - name: Build a list of all the clusters
+      vmware.vmware_rest.vcenter_cluster_info:
+      register: all_the_clusters
+    
     - name: Get information regarding vcenter host
       vmware.vmware_rest.vcenter_cluster_info:
         cluster: '{{ all_the_clusters.value[0].cluster }}'
