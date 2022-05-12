@@ -1,0 +1,3 @@
+hosts: Has to communicate only to host not VMs
+username & password: vcenter -> input i the play
+
