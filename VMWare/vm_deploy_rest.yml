@@ -3,11 +3,10 @@
   tasks:
     - name: Build a list of all the clusters
       vmware.vmware_rest.vcenter_cluster_info:
-        vcenter_username: sgl\chavikas1
-        vcenter_hostname: asbcolvcs01.corp.suth.com
-        vcenter_password: "{{ vcenter_password }}"
+       vcenter_username: sgl\chavikas1
+       vcenter_hostname: asbcolvcs01.corp.suth.com
+       vcenter_password: "{{ vcenter_password }}"
       register: all_the_clusters
-    
     - name: Get information regarding vcenter host
       vmware.vmware_rest.vcenter_cluster_info:
         vcenter_username: sgl\chavikas1
@@ -15,32 +14,29 @@
         vcenter_password: "{{ vcenter_password }}"
         cluster: '{{ all_the_clusters.value[0].cluster }}'
       register: my_cluster_info
-
     - debug: var=my_cluster_info
-
-		- name: Create a VM
-  		vmware.vmware_rest.vcenter_vm:
+    - name: Create a VM
+      vmware.vmware_rest.vcenter_vm:
         vcenter_username: sgl\chavikas1
         vcenter_hostname: asbcolvcs01.corp.suth.com
         vcenter_password: "{{ vcenter_password }}"
-    		placement:
+        placement:
           cluster: '{{ my_cluster_info.id }}'
-      		datastore: ASBCOLVSI01-DS02
+          datastore: ASBCOLVSI01-DS02
             #	folder: '{{ my_virtual_machine_folder.folder }}'
             #resource_pool: present
-    		name: asbgenosh02
-    		guest_OS: RHEL_8_64
+        name: asbgenosh02
+        guest_OS: RHEL_8_64
         cpu:
           count: 4
-    		memory:
-      		hot_add_enabled: true
-      		size_MiB: 2048
+        memory:
+          hot_add_enabled: true
+          size_MiB: 2048
         disks:
           - type: SATA
             new_vmdk:
               name: test1
               capacity: 12000000000
-  		register: my_vm
-
+      register: my_vm
     - name: Debug info regarding VM
       debug: var=my_vm.instance.ipv4
