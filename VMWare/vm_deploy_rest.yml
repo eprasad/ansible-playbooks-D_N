@@ -1,5 +1,5 @@
 - name: Test Vmware automation
-  hosts: 10.61.95.4
+  hosts: asbcolhfx13.corp.suth.com
   tasks:
     - name: Build a list of all the clusters
       vmware.vmware_rest.vcenter_cluster_info:
