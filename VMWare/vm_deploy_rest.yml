@@ -1,0 +1,26 @@
+- name: Test Vmware automation
+  hosts: all
+  tasks:
+    - name: Get information regarding vcenter host
+      vmware.vmware_rest.vcenter_cluster_info:
+        cluster: '{{ all_the_clusters.value[0].cluster }}'
+      register: my_cluster_info
+
+    - debug: var=my_cluster_info
+
+        #    - name: creating a test vm
+        #     vmware.vmware_rest.vcenter_vm:
+        #        placement:
+        #         cluster: "{{ present }}"
+        #         datastore: present
+        #        folder: present
+        #       host: asbcolvcs01.corp.suth.com
+        #     name: 
+        #    guest_OS:
+        #    memory:
+        #     size_MiB:
+        #   disks:
+        #    - type: SATA
+        #      new_vmdk:
+        #      name: test
+        #      capacity: 
