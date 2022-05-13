@@ -1,5 +1,5 @@
 - name: Test Vmware automation
-  hosts: localhost
+  hosts: localhost <ip ofcontroler host>
   tasks:
     - name: Build a list of all the clusters
       vmware.vmware_rest.vcenter_cluster_info:
