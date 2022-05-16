@@ -1,0 +1,17 @@
+- name: playbook to create vm
+  hosts: localhost
+  tasks:
+    - name: clone vm from template and customize GOS
+      vmware_guest:
+        validate_certs: false
+        name: prasad_test4
+        template: testrhel8template
+        datacenter: prod-dc
+        state: poweredon
+        folder: "test"
+        convert: thin
+      register: clone_customize
+
+    - name: Display vm information 
+      debug:
+        var: clone_customize

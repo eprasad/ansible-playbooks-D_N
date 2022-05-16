@@ -1,0 +1,25 @@
+- name: playbook to create vm
+  hosts: localhost
+  tasks:
+
+    - name: Create new VM for advance settings
+      vmware_guest:
+        validate_certs: false
+        name: prasad_test1
+        guest_id: centos64Guest
+        datacenter: "prod-dc"
+        hardware:
+          num_cpus: 4
+          memory_mb: 1024
+        disk:
+          - size: 10gb
+            type: thin
+            datastore: "Datastore"
+        state: present
+        folder: "test"
+      register: r
+
+    - name: Display information
+      debug:
+        var: r
+
