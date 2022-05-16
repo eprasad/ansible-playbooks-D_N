@@ -1,0 +1,14 @@
+---
+- name: Gather all datacenters for vCenter
+  gather_facts: no
+  hosts: localhost
+  tasks:
+    - name: Get a list of the hosts
+      vmware.vmware_rest.vcenter_host_info:
+      register: my_hosts
+      ignore_errors: yes 
+
+    - name: Get a list of the hosts
+      community.vmware.vmware_rest.vcenter_host_info:
+      register: my_hosts
+      ignore_errors: yes
