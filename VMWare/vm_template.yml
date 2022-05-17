@@ -9,12 +9,12 @@
       state: poweredon
       template: "{{ vcenter_template }}"
       disk:
-      - size_gb: 40
-        type: thin
-        datastore: "{{ vcenter_datastore }}"
+      - datastore: "{{ vcenter_datastore }}"
+        #type: thin
+        #size_gb: 40datastore: "{{ vcenter_datastore }}"
       hardware:
-        memory_mb: 2048
-        num_cpus: 4
+        #memory_mb: 2048
+        #num_cpus: 4
         scsi: paravirtual
       validate_certs: false
     delegate_to: localhost
