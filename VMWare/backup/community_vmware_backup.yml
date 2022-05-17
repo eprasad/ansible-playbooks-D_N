@@ -3,9 +3,9 @@
   tasks:
   - name: Create a virtual machine on given ESXi hostname
     community.vmware.vmware_guest:
-      hostname: 'vmware.pnq.cee.redhat.com'
-      username: 'gssuser@vsphere.local'
-      password: 'RedHat1!'
+      hostname: 
+      username: 
+      password: 
       folder: test
       datacenter: prod-dc
       name: test_vm_0001
