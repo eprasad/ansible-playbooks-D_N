@@ -1,0 +1,17 @@
+- name: Clone VM using a template
+  hosts: localhost
+  tasks:
+    - name: Cloning VM from a template
+      vmware_guest:
+        validate_certs: false
+        name: "{{ vm_name }}"
+        template: "{{ vcenter_template }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        state: poweredon
+        folder: "{{ vcenter_folder }}"
+        convert: thin
+      register: clone_customize
+
+    - name: Display vm information 
+      debug:
+        var: clone_customize

@@ -1,3 +1,4 @@
 hosts: Has to communicate only to host not VMs
 username & password: vcenter -> input i the play
 
+Please Note that vmware_rest module only works on Vcenter > 7.0

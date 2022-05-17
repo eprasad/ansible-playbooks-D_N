@@ -1,0 +1,24 @@
+- name: Create VM using images
+  hosts: localhost
+  tasks:
+    - name: Create new VM using specific images
+      vmware_guest:
+        validate_certs: false
+        name: "{{ vm_name }}"
+        guest_id: "{{ vcenter_image }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        hardware:
+          num_cpus: 4
+          memory_mb: 1024
+        disk:
+          - size: 10gb
+            type: thin
+            datastore: "{{ vcenter_datastore }}"
+        state: present
+        folder: "{{ vcenter_folder }}"
+      register: custom_vm
+
+    - name: Display information
+      debug:
+        var: custom_vm
+
