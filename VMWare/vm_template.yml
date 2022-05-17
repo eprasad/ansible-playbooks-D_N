@@ -2,8 +2,8 @@
   hosts: localhost
   tasks:
   - name: Create a virtual machine on given ESXi hostname using templates
-    community.vmware.vmware_guest:
-      #    folder: "{{ vcenter_folder }}"
+    vmware_guest:
+      folder: "{{ vcenter_folder }}"
       datacenter: "{{ vcenter_datacenter }}"
       name: "{{ vm_name }}"
       state: poweredon
