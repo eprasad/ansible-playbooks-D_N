@@ -1,0 +1,58 @@
+- name: Playbook to install and configure postgresql database in RHEL 8.4
+  hosts: all
+  tasks:
+  - name: Ensure postgresql 12 is installed
+    dnf:
+      name: "@postgresql:12"
+      state: present
+
+  - name: Ensure dependencies for postgresql is installed in the system
+    dnf:
+      name: python3-psycopg2
+      state: present
+
+  - name: Check if postgresql is already running in the system
+    stat:
+      path: /var/lib/pgsql/data/pg_hba.conf
+    register: output
+
+  - name: Ensure postgresql is initialized
+    shell: "postgresql-setup initdb"
+    when: not output.stat.exists
+
+  - name: Ensure postgresql service is running
+    service:
+      name: postgresql
+      state: started
+      enabled: true
+
+  - name: Ensure database appdb is present
+    postgresql_db:
+      name: appdb
+      state: present
+    become_user: postgres
+
+  - name: Ensure db user is present
+    postgresql_user:
+      name: app
+      state: present
+      password: redhat
+    become_user: postgres
+
+  - name: Ensure dbuser has access to the db
+    postgresql_privs:
+      type: database
+      database: appdb
+      roles: app
+      privs: ALL
+      grant_option: no
+    become_user: postgres
+
+  - name: Ensure md5 connection for the db user is allowed
+    postgresql_pg_hba:
+      dest: /var/lib/pgsql/data/pg_hba.conf
+      contype: host
+      databases: all
+      method: md5
+      users: app
+      create: true
