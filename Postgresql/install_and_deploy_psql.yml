@@ -1,5 +1,7 @@
 - name: Playbook to install and configure postgresql database in RHEL 8.4
   hosts: all
+  vars_files:
+    - vars.yml
   tasks:
   - name: Ensure postgresql 12 is installed
     dnf:
@@ -28,22 +30,22 @@
 
   - name: Ensure database appdb is present
     postgresql_db:
-      name: appdb
+      name: "{{ db_name }}"
       state: present
     become_user: postgres
 
   - name: Ensure db user is present
     postgresql_user:
-      name: app
+      name: "{{ db_user }}"
       state: present
-      password: redhat
+      password: "{{ db_password }}"
     become_user: postgres
 
   - name: Ensure dbuser has access to the db
     postgresql_privs:
       type: database
-      database: appdb
-      roles: app
+      database: "{{ db_name }}"
+      roles: "{{ db_user }}"
       privs: ALL
       grant_option: no
     become_user: postgres
@@ -54,5 +56,5 @@
       contype: host
       databases: all
       method: md5
-      users: app
+      users: "{{ db_user }}"
       create: true
